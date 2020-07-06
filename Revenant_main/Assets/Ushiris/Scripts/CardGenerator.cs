@@ -48,7 +48,7 @@ public class CardGenerator : MonoBehaviour
         }
         catch
         {
-
+            ErrorMessage.InputStringError(gameObject);
         }
     }
 }
