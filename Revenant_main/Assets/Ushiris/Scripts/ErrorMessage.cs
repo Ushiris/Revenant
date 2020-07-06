@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ErrorMessage : MonoBehaviour
+public class ErrorMessage : SingletonMonoBehaviour<ErrorMessage>
 {
-    static Text lines;
+    Text lines;
 
-    private void Awake()
+    private void Start()
     {
-        lines = GameObject.Find("ErrorMessage").GetComponent<Text>();
+        lines = GetComponent<Text>();
     }
 
-    public static void InputStringError(GameObject source)
+    public void InputStringError(GameObject source)
     {
         Debug.Log("String error!:" + source.name);
         lines.text += "\n入力が不正です。";
-        StopWatch.Summon(5, ()=> { TimeOutErrorMessage(); }, lines.gameObject);
+        StopWatch.SummonOneShot(5, TimeOutErrorMessage, lines.gameObject);
     }
 
-    public static void TimeOutErrorMessage()
+    public void TimeOutErrorMessage()
     {
-        lines.text.Remove(0);
+        lines.text.Remove(0,1);
         var end = lines.text.IndexOf("\n");
         lines.text.Remove(0, end + 1);
     }

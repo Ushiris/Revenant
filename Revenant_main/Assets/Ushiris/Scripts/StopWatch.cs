@@ -15,8 +15,9 @@ public class StopWatch : MonoBehaviour
     public TimeEvent LapEvent { get; set; }
 
     public float LapTime { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
     public float LapTimer { get; set; }
+    bool IsOneShot { get; set; } = false;
 
     public static StopWatch Summon(float lapTime, TimeEvent act,GameObject parent)
     {
@@ -25,6 +26,14 @@ public class StopWatch : MonoBehaviour
         instance.LapEvent = act;
 
         return instance;
+    }
+
+    public static void SummonOneShot(float lapTime, TimeEvent act, GameObject parent)
+    {
+        StopWatch instance = parent.AddComponent<StopWatch>();
+        instance.LapTime = lapTime;
+        instance.LapEvent = act;
+        instance.IsOneShot = true;
     }
 
     private void Start()
@@ -42,6 +51,7 @@ public class StopWatch : MonoBehaviour
         if (LapTime < LapTimer)
         {
             LapEvent();
+            if (IsOneShot) Destroy(this);
             LapTimer -= LapTime;
         }
 
