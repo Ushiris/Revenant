@@ -9,8 +9,8 @@ public class CardGenerator : SingletonMonoBehaviour<CardGenerator>
         var card = Instantiate(Resources.Load("Card")) as GameObject;
         var data = card.GetComponent<Card>();
 
-        data.IDtype = id_type;
-        data.Number = number;
+        data.iDtype = id_type;
+        data.number = number;
 
         return card;
     }

@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
 {
-    public enum IDType
+    public enum IDType:int
     {
         Normal,PR,SP
     }
-
+    
     public static Dictionary<IDType, string> IDName = new Dictionary<IDType, string>
     {
         { IDType.Normal,"No" },{ IDType.PR,"PR" },{ IDType.SP,"SP" }
@@ -18,19 +18,21 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
     private Vector3 screenPoint;
     private Vector3 offset;
 
-    public IDType IDtype;
-    public uint Number;
+    public IDType iDtype = IDType.Normal;
+    public uint number = 0;
+    public CardMainData cardData;
 
     private void Start()
     {
+        cardData = CardDataBase.GetCardData(iDtype, number);
         var text = GetComponentInChildren<TMPro.TextMeshPro>();
-        text.text = IDName[IDtype] + "." + Number;
+        text.text = IDName[iDtype] + "." + number;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + this.offset;
+        Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + offset;
         transform.position = currentPosition;
     }
 
