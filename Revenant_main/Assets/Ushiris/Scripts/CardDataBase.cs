@@ -42,4 +42,21 @@ public class CardDataBase:MonoBehaviour
 
         return cardData;
     }
+
+    public static int GetIndex(Card.IDType type, uint ID)
+    {
+        int index = 0;
+
+        for (var i=0;i< csvDatas[(int)type].Count; i++)
+        {
+            int id;
+            try { id=int.Parse(csvDatas[(int)type][i][CardMainData.Property.Number]); } catch { id = 0; };
+            if (id == ID)
+            {
+                index = i;
+            }
+        }
+
+        return index;
+    }
 }
