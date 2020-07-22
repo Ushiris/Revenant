@@ -80,7 +80,8 @@ public class CardMainData
     {
         {"人間",Race.Human },
         {"妖怪",Race.Apparition },
-        {"妖精",Race.Witch },
+        {"妖精",Race.Fairy },
+        {"魔法使い",Race.Witch },
         {"河童",Race.Kappa },
         {"吸血鬼",Race.Vampire },
         {"魔界人",Race.Demon },

@@ -38,7 +38,7 @@ public class CardDataBase:MonoBehaviour
     public static CardMainData GetCardData(Card.IDType type,uint num)
     {
         CardMainData cardData = new CardMainData();
-        cardData.Compile(csvDatas[(int)type][(int)num]);
+        cardData.Compile(csvDatas[(int)type][GetIndex(type,num)]);
 
         return cardData;
     }
