@@ -56,7 +56,7 @@ public class CardDataPrinter : MonoBehaviour
 
     string GetNameText()
     {
-        Debug.Log(selectCard.cardData.Name);
+        DebugLogger.Log(selectCard.cardData.Name);
         return selectCard.cardData.Name + (selectCard.cardData.SubName == "" ? "" : "/" + selectCard.cardData.SubName);
     }
 

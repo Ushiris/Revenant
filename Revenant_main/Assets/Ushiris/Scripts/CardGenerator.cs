@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardGenerator : SingletonMonoBehaviour<CardGenerator>
+public class CardGenerator : MonoBehaviour
 {
     public static GameObject Generate(Card.IDType id_type, uint number)
     {

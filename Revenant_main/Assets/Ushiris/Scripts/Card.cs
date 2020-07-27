@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UEventCard : UnityEvent<Card> { }
 
-public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
+public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler,IPointerClickHandler
 {
     public enum IDType:int
     {
@@ -48,6 +48,10 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         // ワールド座標上の、マウスカーソルと、対象の位置の差分。
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
         OnCardClick.Invoke(this);
     }
 }

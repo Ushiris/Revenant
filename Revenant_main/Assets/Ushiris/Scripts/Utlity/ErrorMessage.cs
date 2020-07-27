@@ -14,7 +14,7 @@ public class ErrorMessage : SingletonMonoBehaviour<ErrorMessage>
 
     public void InputStringError(GameObject source)
     {
-        Debug.Log("String error!:" + source.name);
+        DebugLogger.Log("String error!:" + source.name);
         lines.text += "\n入力が不正です。";
         StopWatch.SummonOneShot(5, TimeOutErrorMessage, lines.gameObject);
     }
