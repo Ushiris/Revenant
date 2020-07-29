@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UEventCard : UnityEvent<Card> { }
 
-public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler,IPointerClickHandler
+public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
 {
     public enum IDType:int
     {
@@ -39,7 +39,8 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler,IPointerClickHa
     {
         Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + offset;
-        transform.position = currentPosition;
+        float y = transform.position.y;
+        transform.position = new Vector3(eventData.pointerCurrentRaycast.worldPosition.x, y, eventData.pointerCurrentRaycast.worldPosition.z);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -50,7 +51,7 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler,IPointerClickHa
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnMouseDown()
     {
         OnCardClick.Invoke(this);
     }
