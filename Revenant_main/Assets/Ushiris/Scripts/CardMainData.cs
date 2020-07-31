@@ -45,7 +45,7 @@ public class CardMainData
         CARDTYPE_COUNT
     }
 
-    public static Dictionary<string, CardType> CardTypeDic = new Dictionary<string, CardType>
+    public static readonly Dictionary<string, CardType> CardTypeDic = new Dictionary<string, CardType>
     {
         {"Character",CardType.Character },
         {"Spell",CardType.Spell },
@@ -76,7 +76,7 @@ public class CardMainData
         RACE_COUNT
     }
 
-    public static Dictionary<string, Race> RaceDic = new Dictionary<string, Race>
+    public static readonly Dictionary<string, Race> RaceDic = new Dictionary<string, Race>
     {
         {"人間",Race.Human },
         {"妖怪",Race.Apparition },
@@ -109,7 +109,7 @@ public class CardMainData
         RANGETYPE_COUNT
     }
 
-    public static Dictionary<string, RangeType> RangeDic = new Dictionary<string, RangeType>
+    public static readonly Dictionary<string, RangeType> RangeDic = new Dictionary<string, RangeType>
     {
         {"単一",RangeType.Target },
         {"範囲",RangeType.All },
@@ -128,7 +128,7 @@ public class CardMainData
         PERIODTYPE_COUNT
     }
 
-    public static Dictionary<string, PeriodType> PeriodDic = new Dictionary<string, PeriodType>
+    public static readonly Dictionary<string, PeriodType> PeriodDic = new Dictionary<string, PeriodType>
     {
         {"瞬間",PeriodType.Flash },
         {"持続",PeriodType.Persistence },
@@ -198,6 +198,7 @@ public class CardMainData
         try { Comment = data[Property.Comment]; }                           catch { Comment = null; }
 
         List<string> races = new List<string>(data[Property.Solidarity].Split('+'));
+        DebugLogger.Log(races[0]);
         if (races[0] != "") races.ForEach((item) => { Solidarity.Add(RaceDic[item]); });
         Ilust = Resources.Load(data[Property.Ilust]) as Sprite;
         if (Ilust == null) Ilust = Resources.Load("ilust/none") as Sprite;
