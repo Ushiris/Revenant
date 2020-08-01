@@ -13,7 +13,7 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
         Normal,PR,SP
     }
 
-    public static UEventCard OnCardClick;
+    public static UEventCard OnCardClick = new UEventCard();
     
     public static Dictionary<IDType, string> IDName = new Dictionary<IDType, string>
     {
@@ -26,13 +26,18 @@ public class Card : MonoBehaviour,IDragHandler,IBeginDragHandler
     public IDType iDtype = IDType.Normal;
     public uint number = 0;
     public CardMainData cardData;
+    TMPro.TextMeshPro text;
 
     private void Start()
     {
         cardData = CardDataBase.GetCardData(iDtype, number);
-        var text = GetComponentInChildren<TMPro.TextMeshPro>();
+        text = GetComponentInChildren<TMPro.TextMeshPro>();
         text.text = IDName[iDtype] + "." + number;
-        if (OnCardClick == null) OnCardClick = new UEventCard();
+    }
+
+    void Hide()
+    {
+        
     }
 
     public void OnDrag(PointerEventData eventData)
