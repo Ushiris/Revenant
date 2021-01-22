@@ -4,5 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Ushiris/Scenes/Init.unity
+    guid: 2e93b8d803c421347933cc4f67034b8b
+  - enabled: 1
+    path: Assets/Ushiris/Scenes/DeckEdit.unity
+    guid: da707a783726e994182a2abe868104a9
+  - enabled: 1
+    path: Assets/Ushiris/Scenes/main.unity
+    guid: 0167b0281e0e09348843fdb6f7ffcf2c
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ecea58de6eff8974fb63e68db9634418,
+      type: 2}
